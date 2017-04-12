@@ -45,27 +45,15 @@ public class RiotApiController {
         long now = System.currentTimeMillis();
         double result = calc.calculate(calcNeed);
  
- //       String response = restTemplate.getForObject(url, String.class);
         
         Map<String, Object> parsedMap = new HashMap<>();
-        
- //       Map<String, Object> parsedMap = new JacksonJsonParser().parseMap(response);
-//
-//        parsedMap.forEach((key, value) -> log.info(String.format("key [%s] type [%s] value [%s]", key, value.getClass(), value)));
-//
-//        Map<String, Object> calcDetail = (Map<String, Object>) parsedMap.values().toArray()[0];
-//        int teamIdinfo = 3;
-//        String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
-//        long now = Long.parseLong(inTime);
-//        double result = 0;
         
         parsedMap.put("teamId", teamID);
         parsedMap.put("now", now);
         parsedMap.put("result", result);
         
 //        String msg = restTemplate.postForObject(url, parsedMap, String.class);
- 
-        
+         
         CalcInformation calcinfo = new CalcInformation(teamID, now, result, restTemplate.postForObject(url, parsedMap, String.class));
 
         return calcinfo;
